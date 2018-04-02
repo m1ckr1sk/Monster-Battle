@@ -36,7 +36,7 @@ jobs:
 
       - save_cache:
           paths:
-            - ./venv
+            - ./monster
           key: v1-dependencies-{{ checksum "requirements.txt" }}
         
       # run tests!
@@ -44,7 +44,7 @@ jobs:
       - run:
           name: run tests
           command: |
-            . venv/bin/activate
+            . monster/bin/activate
             pytest monster_battle/test
 
       - store_artifacts:
