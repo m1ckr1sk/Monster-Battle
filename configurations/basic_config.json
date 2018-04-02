@@ -1,0 +1,43 @@
+{
+    "monsters": [
+        {
+            "conditions": [
+                {
+                    "type": "item",
+                    "name": "C1",
+                    "required_item": "sword"
+                },
+                {
+                    "number_of_chances": 2,
+                    "type": "total value",
+                    "name": "C2",
+                    "required_value": 10
+                }
+            ],
+            "name": "cyclops",
+            "rule": "C1 and C2"
+        },
+        {
+            "conditions": [
+                {
+                    "type": "item",
+                    "name": "C1",
+                    "required_item": "sword"
+                },
+                {
+                    "type": "item",
+                    "name": "C2",
+                    "required_item": "axe"
+                },
+                {
+                    "number_of_chances": 1,
+                    "type": "total value",
+                    "name": "C3",
+                    "required_value": 5
+                }
+            ],
+            "name": "demon knight",
+            "rule": "(C1 or C2) and C3"
+        }
+    ]
+}
