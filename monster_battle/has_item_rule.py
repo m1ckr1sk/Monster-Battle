@@ -1,7 +1,8 @@
 from irule import IRule
 
+
 class HasItemRule(IRule):
-    def __init__(self,item):
+    def __init__(self, item):
         self._item = item
         self._result = "not run"
 
