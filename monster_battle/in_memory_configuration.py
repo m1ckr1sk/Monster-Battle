@@ -1,10 +1,11 @@
 from iconfiguration import IConfiguration
 
+
 class InMemoryConfiguration(IConfiguration):
 
     def __init__(self):
         print "Creating in memory config"
-    
+
     def get_configuration(self):
         configuration = {}
         monsters = []

@@ -1,6 +1,7 @@
 from monster_battle.iconfiguration import IConfiguration
 import json
 
+
 class FileConfiguration(IConfiguration):
     def __init__(self, filename):
         self._filename = filename

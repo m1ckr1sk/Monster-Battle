@@ -1,8 +1,8 @@
 class GameState():
     def __init__(self):
-      self._items = []
-      self._rolls = []
-      
+        self._items = []
+        self._rolls = []
+
     def set_items(self, items):
         self._items = items
 

@@ -10,10 +10,10 @@ class TotalValueRule(IRule):
     def execute(self, game_state):
         self._result = "False"
         if len(game_state.get_rolls()) >= self._number_of_chances:
-            print ("running total value rule. Value is {}..".format(
+            print("running total value rule. Value is {}..".format(
                 sum(game_state.get_rolls()[:self._number_of_chances])))
             if sum(
-                  game_state.get_rolls()[:self._number_of_chances]) >= \
+                game_state.get_rolls()[:self._number_of_chances]) >= \
                     self._required_value:
                 self._result = "True"
 
