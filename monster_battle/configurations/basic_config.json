@@ -38,6 +38,35 @@
             ],
             "name": "demon knight",
             "rule": "(C1 or C2) and C3"
+        },
+        {
+            "conditions": [
+                {
+                    "type": "item",
+                    "name": "C1",
+                    "required_item": "net"
+                },
+                {
+                    "number_of_chances": 2,
+                    "type": "greater than",
+                    "name": "C2",
+                    "required_value": 5
+                }
+            ],
+            "name": "battle vampire",
+            "rule": "C1 and C2"
+        },
+        {
+            "conditions": [
+                {
+                    "number_of_chances": 3,
+                    "type": "exact match",
+                    "name": "C1",
+                    "required_value": 1
+                }
+            ],
+            "name": "mad mike",
+            "rule": "C1"
         }
     ]
 }

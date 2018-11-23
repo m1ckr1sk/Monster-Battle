@@ -1,5 +1,5 @@
-from irule import IRule
-from greater_than_rule import GreaterThanRule
+from monster_battle.irule import IRule
+from monster_battle.greater_than_rule import GreaterThanRule
 
 class Evaluator(object):
 

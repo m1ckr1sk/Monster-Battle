@@ -1,4 +1,4 @@
-from iconfiguration import IConfiguration
+from monster_battle.iconfiguration import IConfiguration
 import json
 
 class FileConfiguration(IConfiguration):
