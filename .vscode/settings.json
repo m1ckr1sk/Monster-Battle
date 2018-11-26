@@ -1,6 +1,8 @@
 {
-    "python.pythonPath": "D:\\python\\python.exe",
+    "python.pythonPath": "C:\\Python37\\python.exe",
     "python.linting.pylintEnabled": true,
     "python.linting.flake8Enabled": true,
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "python.unitTest.pyTestEnabled": true,
+    "python.unitTest.pyTestArgs": ["-s", "monster_battle\\test"]
 }

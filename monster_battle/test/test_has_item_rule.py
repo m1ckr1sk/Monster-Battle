@@ -1,8 +1,8 @@
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from has_item_rule import HasItemRule  # noqa: E402
-from game_state import GameState  # noqa: E402
+from monster_battle.has_item_rule import HasItemRule  # noqa: E402
+from monster_battle.game_state import GameState  # noqa: E402
 
 
 def test_rule_not_run_returns_not_run():
