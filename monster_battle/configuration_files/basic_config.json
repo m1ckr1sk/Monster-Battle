@@ -68,7 +68,7 @@
                     "number_of_chances": 3,
                     "type": "exact match",
                     "name": "C2",
-                    "required_value": 8
+                    "required_value": 6
                 }
             ],
             "name": "mad mike",

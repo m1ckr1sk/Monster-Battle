@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from monster_battle.exact_match_rule import ExactMatchRule  # noqa: E402
+from monster_battle.rules.exact_match_rule import ExactMatchRule  # noqa: E402
 from monster_battle.game_state import GameState  # noqa: E402
 
 

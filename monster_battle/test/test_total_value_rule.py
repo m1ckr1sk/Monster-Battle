@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from monster_battle.total_value_rule import TotalValueRule  # noqa: E402
+from monster_battle.rules.total_value_rule import TotalValueRule  # noqa: E402
 from monster_battle.game_state import GameState  # noqa: E402
 
 

@@ -9,10 +9,10 @@ Todo:
 
 """
 
-from monster_battle.total_value_rule import TotalValueRule
-from monster_battle.has_item_rule import HasItemRule
-from monster_battle.greater_than_rule import GreaterThanRule
-from monster_battle.exact_match_rule import ExactMatchRule
+from monster_battle.rules.total_value_rule import TotalValueRule
+from monster_battle.rules.has_item_rule import HasItemRule
+from monster_battle.rules.greater_than_rule import GreaterThanRule
+from monster_battle.rules.exact_match_rule import ExactMatchRule
 from monster_battle.evaluator import Evaluator
 import logging
 
@@ -39,10 +39,11 @@ class Monster():
         self._logger = logging.getLogger('root')
         self._logger.info("creating monster {} with rule {}".format(
             self._name, self._rule))
-
+        self._required_rolls = 0
         self.load_config(config)
 
     def load_config(self, config):
+
         for condition in config["conditions"]:
             self._logger.info("condition {} is type {}".format(
                 condition["name"], condition["type"]))
@@ -56,24 +57,32 @@ class Monster():
                     condition["name"],
                     TotalValueRule(condition["number_of_chances"],
                                    condition["required_value"]))
+                if self._required_rolls < int(condition["number_of_chances"]):
+                    self._required_rolls = condition["number_of_chances"]
             elif condition["type"] == "greater than":
                 self._evaluator.add_rule(
                     condition["name"],
                     GreaterThanRule(condition["number_of_chances"],
                                     condition["required_value"]))
+                if self._required_rolls < int(condition["number_of_chances"]):
+                    self._required_rolls = condition["number_of_chances"]
             elif condition["type"] == "exact match":
                 self._evaluator.add_rule(
                     condition["name"],
                     ExactMatchRule(condition["number_of_chances"],
                                    condition["required_value"]))
+                if self._required_rolls < int(condition["number_of_chances"]):
+                    self._required_rolls = condition["number_of_chances"]
 
     def battle(self, game_state):
         """Battle method takes the given game state and
-        runs the rules agains the games state.
+        runs the rules against the games state.
         Args:
             game_state (GameState): The state the rules should run
             against.
         """
+        self._logger.info("Player has  {} and has rolled {}".format(
+                game_state.get_items(), game_state.get_rolls()))
         self._evaluator.run_rules(game_state)
         rule = self._rule
         for condition in self._conditions:

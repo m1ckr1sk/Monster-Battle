@@ -1,0 +1,17 @@
+[
+  "monster_battle/test/test_exact_match_rule.py::test_rule_not_run_returns_not_run",
+  "monster_battle/test/test_exact_match_rule.py::test_player_not_thrown_exact_is_fail",
+  "monster_battle/test/test_exact_match_rule.py::test_player_thrown_exact_is_pass",
+  "monster_battle/test/test_exact_match_rule.py::test_player_thrown_exact_over_multiple_rolls_is_pass",
+  "monster_battle/test/test_greater_than_rule.py::test_rule_not_run_returns_not_run",
+  "monster_battle/test/test_greater_than_rule.py::test_player_not_thrown_enough_is_fail",
+  "monster_battle/test/test_greater_than_rule.py::test_player_thrown_enough_is_pass",
+  "monster_battle/test/test_greater_than_rule.py::test_player_thrown_enough__over_multiple_rolls_is_pass",
+  "monster_battle/test/test_has_item_rule.py::test_rule_not_run_returns_not_run",
+  "monster_battle/test/test_has_item_rule.py::test_player_not_has_item_is_fail",
+  "monster_battle/test/test_has_item_rule.py::test_player_has_item_is_pass",
+  "monster_battle/test/test_total_value_rule.py::test_rule_not_run_returns_not_run",
+  "monster_battle/test/test_total_value_rule.py::test_player_not_thrown_enough_is_fail",
+  "monster_battle/test/test_total_value_rule.py::test_player_thrown_enough_is_pass",
+  "monster_battle/test/test_total_value_rule.py::test_player_thrown_enough__over_multiple_rolls_is_pass"
+]

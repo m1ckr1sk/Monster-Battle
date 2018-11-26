@@ -1,7 +1,7 @@
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from monster_battle.has_item_rule import HasItemRule  # noqa: E402
+from monster_battle.rules.has_item_rule import HasItemRule  # noqa: E402
 from monster_battle.game_state import GameState  # noqa: E402
 
 

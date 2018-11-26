@@ -7,7 +7,7 @@ Todo:
     * Think of better way to load rules
 
 """
-from monster_battle.irule import IRule
+from monster_battle.rules.irule import IRule
 import logging
 
 

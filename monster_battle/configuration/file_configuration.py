@@ -1,4 +1,4 @@
-from monster_battle.iconfiguration import IConfiguration
+from monster_battle.configuration.iconfiguration import IConfiguration
 import logging
 import json
 
