@@ -100,3 +100,4 @@ class Monster():
         self._logger.info("battle result with {} is {}".format(
             self._name,
             battle_result))
+        return battle_result

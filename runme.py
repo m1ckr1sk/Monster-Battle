@@ -40,11 +40,15 @@ logger = logging.getLogger('root')
 try:
 
     configuration = get_configuration()
-
+    score = 0
     for monster in configuration["monsters"]:
         game_monster = Monster(monster)
         game_state = generate_game_state(game_monster._required_rolls)
-        game_monster.battle(game_state)
+        battle_state = game_monster.battle(game_state)
+        if(game_monster.battle(game_state)):
+            score = score + 1
+    logger.info("You defeated %s monsters", score)
+
 
 except Exception as exc:
     print("Should not fail " + str(exc))
