@@ -43,7 +43,11 @@ class Monster():
         self.load_config(config)
 
     def load_config(self, config):
-
+        """Load config
+        Args:
+            config (IConfiguration): The rule configuration to load
+            against.
+        """
         for condition in config["conditions"]:
             self._logger.info("condition {} is type {}".format(
                 condition["name"], condition["type"]))

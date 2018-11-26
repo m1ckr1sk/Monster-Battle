@@ -7,8 +7,8 @@ Todo:
     * Think of better way to load rules
 
 """
-from monster_battle.rules.irule import IRule
 import logging
+from monster_battle.rules.irule import IRule
 
 
 class HasItemRule(IRule):

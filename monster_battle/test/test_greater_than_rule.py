@@ -4,7 +4,15 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from monster_battle.rules.greater_than_rule \
     import GreaterThanRule  # noqa: E402
 from monster_battle.game_state import GameState  # noqa: E402
+"""Monster Battle.
 
+This module is the main monster creation module and handles the rule
+logic.
+
+Todo:
+    * Think of better way to load rules
+
+"""
 
 def test_rule_not_run_returns_not_run():
     number_of_chances = 1
