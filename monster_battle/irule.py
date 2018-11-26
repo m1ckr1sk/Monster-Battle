@@ -9,6 +9,7 @@ Todo:
 """
 from abc import ABCMeta, abstractmethod
 
+
 class IRule:
     """Rule interface.
 

@@ -63,10 +63,16 @@
                     "type": "exact match",
                     "name": "C1",
                     "required_value": 1
+                },
+                {
+                    "number_of_chances": 3,
+                    "type": "exact match",
+                    "name": "C2",
+                    "required_value": 8
                 }
             ],
             "name": "mad mike",
-            "rule": "C1"
+            "rule": "C1 or C2"
         }
     ]
 }

@@ -1,10 +1,12 @@
 from monster_battle.game_state import GameState
 from monster_battle.monster import Monster
 from monster_battle.file_configuration import FileConfiguration
+import logging
 
 
 def get_configuration():
-    file_configuraiton = FileConfiguration('monster_battle/configurations/basic_config.json')
+    file_configuraiton = FileConfiguration(
+        'monster_battle/configurations/basic_config.json')
     configuration = file_configuraiton.get_configuration()
     return configuration
 
@@ -34,6 +36,7 @@ def get_game_state():
     return game_state
 
 
+logger = logging.getLogger('root')
 try:
 
     configuration = get_configuration()
@@ -44,4 +47,4 @@ try:
         game_monster.battle(game_state)
 
 except Exception as exc:
-    print ("Should not fail " + exc.message)
+    print("Should not fail " + str(exc))

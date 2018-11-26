@@ -1,10 +1,12 @@
-from iconfiguration import IConfiguration
+from monster_battle.iconfiguration import IConfiguration
+import logging
 
 
 class InMemoryConfiguration(IConfiguration):
 
     def __init__(self):
-        print "Creating in memory config"
+        self._logger = logging.getLogger('root')
+        self._logger.info("Creating in memory config")
 
     def get_configuration(self):
         configuration = {}

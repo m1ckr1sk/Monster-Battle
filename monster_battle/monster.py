@@ -14,6 +14,7 @@ from monster_battle.has_item_rule import HasItemRule
 from monster_battle.greater_than_rule import GreaterThanRule
 from monster_battle.exact_match_rule import ExactMatchRule
 from monster_battle.evaluator import Evaluator
+import logging
 
 
 class Monster():
@@ -35,13 +36,17 @@ class Monster():
         self._evaluator = Evaluator()
         self._rule = config["rule"]
         self._conditions = config["conditions"]
+        self._logger = logging.getLogger('root')
+        self._logger.info("creating monster {} with rule {}".format(
+            self._name, self._rule))
 
-        print("creating monster {} with rule {}".format(self._name,
-                                                        self._rule))
+        self.load_config(config)
 
+    def load_config(self, config):
         for condition in config["conditions"]:
-            print("condition {} is type {}".format(condition["name"],
-                                                   condition["type"]))
+            self._logger.info("condition {} is type {}".format(
+                condition["name"], condition["type"]))
+
             if condition["type"] == "item":
                 self._evaluator.add_rule(
                     condition["name"],
@@ -72,13 +77,13 @@ class Monster():
         self._evaluator.run_rules(game_state)
         rule = self._rule
         for condition in self._conditions:
-            print("{} rule state is {}".format(
+            self._logger.info("{} rule state is {}".format(
                 condition["name"],
                 self._evaluator.rule_state(condition["name"])))
             rule_state = self._evaluator.rule_state(condition["name"])
             rule = rule.replace(condition["name"], rule_state)
-        print("Rule for evaulation is {}".format(rule))
+        self._logger.info("Rule for evaulation is {}".format(rule))
         battle_result = eval(rule)
-        print("battle result with {} is {}".format(
+        self._logger.info("battle result with {} is {}".format(
             self._name,
             battle_result))
