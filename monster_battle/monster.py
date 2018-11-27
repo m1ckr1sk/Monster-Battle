@@ -13,6 +13,7 @@ from monster_battle.rules.total_value_rule import TotalValueRule
 from monster_battle.rules.has_item_rule import HasItemRule
 from monster_battle.rules.greater_than_rule import GreaterThanRule
 from monster_battle.rules.exact_match_rule import ExactMatchRule
+from monster_battle.rules.bounded_match_rule import BoundedMatchRule
 from monster_battle.evaluator import Evaluator
 import logging
 
@@ -53,30 +54,53 @@ class Monster():
                 condition["name"], condition["type"]))
 
             if condition["type"] == "item":
-                self._evaluator.add_rule(
-                    condition["name"],
-                    HasItemRule(condition["required_item"]))
+                self.add_has_item_rule(condition)
             elif condition["type"] == "total value":
-                self._evaluator.add_rule(
-                    condition["name"],
-                    TotalValueRule(condition["number_of_chances"],
-                                   condition["required_value"]))
-                if self._required_rolls < int(condition["number_of_chances"]):
-                    self._required_rolls = condition["number_of_chances"]
+                self.add_total_value_rule(condition)
             elif condition["type"] == "greater than":
-                self._evaluator.add_rule(
-                    condition["name"],
-                    GreaterThanRule(condition["number_of_chances"],
-                                    condition["required_value"]))
-                if self._required_rolls < int(condition["number_of_chances"]):
-                    self._required_rolls = condition["number_of_chances"]
+                self.add_greater_than_value_rule(condition)
             elif condition["type"] == "exact match":
-                self._evaluator.add_rule(
-                    condition["name"],
-                    ExactMatchRule(condition["number_of_chances"],
-                                   condition["required_value"]))
-                if self._required_rolls < int(condition["number_of_chances"]):
-                    self._required_rolls = condition["number_of_chances"]
+                self.add_exact_match_rule(condition)
+            elif condition["type"] == "bounded match":
+                self.add_bounded_match_rule(condition)
+
+    def add_bounded_match_rule(self, condition):
+        self._evaluator.add_rule(
+            condition["name"],
+            BoundedMatchRule(condition["number_of_chances"],
+                             condition["required_value"],
+                             condition["boundary_offset"]))
+        if self._required_rolls < int(condition["number_of_chances"]):
+            self._required_rolls = condition["number_of_chances"]
+
+    def add_exact_match_rule(self, condition):
+        self._evaluator.add_rule(
+            condition["name"],
+            ExactMatchRule(condition["number_of_chances"],
+                           condition["required_value"]))
+        if self._required_rolls < int(condition["number_of_chances"]):
+            self._required_rolls = condition["number_of_chances"]
+
+    def add_greater_than_value_rule(self, condition):
+        self._evaluator.add_rule(
+            condition["name"],
+            GreaterThanRule(condition["number_of_chances"],
+                            condition["required_value"]))
+        if self._required_rolls < int(condition["number_of_chances"]):
+            self._required_rolls = condition["number_of_chances"]
+
+    def add_total_value_rule(self, condition):
+        self._evaluator.add_rule(
+            condition["name"],
+            TotalValueRule(condition["number_of_chances"],
+                           condition["required_value"]))
+        if self._required_rolls < int(condition["number_of_chances"]):
+            self._required_rolls = condition["number_of_chances"]
+
+    def add_has_item_rule(self, condition):
+        self._evaluator.add_rule(
+            condition["name"],
+            HasItemRule(condition["required_item"]))
 
     def battle(self, game_state):
         """Battle method takes the given game state and

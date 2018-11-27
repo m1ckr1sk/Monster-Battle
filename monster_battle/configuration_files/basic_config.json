@@ -73,6 +73,19 @@
             ],
             "name": "mad mike",
             "rule": "C1 or C2"
+        },
+        {
+            "conditions": [
+                {
+                    "number_of_chances": 3,
+                    "type": "bounded match",
+                    "name": "C1",
+                    "required_value": 1,
+                    "boundary_offset": 2
+                }
+            ],
+            "name": "mad mike",
+            "rule": "C1"
         }
     ]
 }
