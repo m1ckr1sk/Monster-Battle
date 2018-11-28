@@ -25,14 +25,20 @@ class BoundedMatchRule(IRule):
         self._result = "not run"
         self._logger = logging.getLogger('root')
 
-    def execute(self, game_state):
+    def execute(self, game_state, input_gatherer):
         """Execute the rule.
         Args:
             game_state (GameState): The game state to assess
         """
         self._result = "False"
         if len(game_state.get_rolls()) >= self._number_of_chances:
-            required_values = self.get_expanded_range()
+            if self._required_value == "user":
+                required_value = input_gatherer.get_number_input(
+                    "please enter required value for rule:")
+            else:
+                required_value = int(self._required_value)
+
+            required_values = self.get_expanded_range(required_value)
 
             self._logger.info("Bounded match rule requires %s",
                               required_values)
@@ -52,11 +58,11 @@ class BoundedMatchRule(IRule):
         """Get the last state of the rule"""
         return self._result
 
-    def get_expanded_range(self):
+    def get_expanded_range(self, required_value):
         """Take the required value and add the other values that will match
         if we apply the offset"""
         required_values = []
-        for val in range(self._required_value - self._boundary_offset,
-                         self._required_value + self._boundary_offset + 1):
+        for val in range(required_value - self._boundary_offset,
+                         required_value + self._boundary_offset + 1):
             required_values.append(val)
         return required_values

@@ -12,7 +12,7 @@
                     "number_of_chances": 2,
                     "type": "total value",
                     "name": "rolls_10_in_2",
-                    "required_value": 10
+                    "required_value": "10"
                 }
             ],
             "name": "cyclops",
@@ -34,7 +34,7 @@
                     "number_of_chances": 2,
                     "type": "total value",
                     "name": "rolls_5_total_in_2",
-                    "required_value": 5
+                    "required_value": "5"
                 }
             ],
             "name": "demon knight",
@@ -51,7 +51,7 @@
                     "number_of_chances": 2,
                     "type": "greater than",
                     "name": "rolls_more_than_5_in_2",
-                    "required_value": 5
+                    "required_value": "5"
                 }
             ],
             "name": "battle vampire",
@@ -63,13 +63,13 @@
                     "number_of_chances": 3,
                     "type": "exact match",
                     "name": "rolls_1_in_3",
-                    "required_value": 1
+                    "required_value": "1"
                 },
                 {
                     "number_of_chances": 3,
                     "type": "exact match",
                     "name": "rolls_6_in_3",
-                    "required_value": 6
+                    "required_value": "6"
                 }
             ],
             "name": "mad mike",
@@ -81,12 +81,25 @@
                     "number_of_chances": 3,
                     "type": "bounded match",
                     "name": "rolls_1_plus_or_minus_2_in_3",
-                    "required_value": 1,
+                    "required_value": "1",
                     "boundary_offset": 2
                 }
             ],
             "name": "terrible titan",
             "rule": "rolls_1_plus_or_minus_2_in_3"
+        },
+        {
+            "conditions": [
+                {
+                    "number_of_chances": 3,
+                    "type": "bounded match",
+                    "name": "rolls_ud_plus_or_minus_2_in_3",
+                    "required_value": "user",
+                    "boundary_offset": 2
+                }
+            ],
+            "name": "terrible titan",
+            "rule": "rolls_ud_plus_or_minus_2_in_3"
         }
     ]
 }

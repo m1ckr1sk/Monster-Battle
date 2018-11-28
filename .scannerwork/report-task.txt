@@ -1,0 +1,7 @@
+organization=m1ckr1sk-github
+projectKey=monster-battle
+serverUrl=https://sonarcloud.io
+serverVersion=7.1.1.10702
+dashboardUrl=https://sonarcloud.io/dashboard/index/monster-battle
+ceTaskId=AWLuBhapX0BbYiea-_H5
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWLuBhapX0BbYiea-_H5

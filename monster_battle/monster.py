@@ -102,7 +102,7 @@ class Monster():
             condition["name"],
             HasItemRule(condition["required_item"]))
 
-    def battle(self, game_state):
+    def battle(self, game_state, input_gatherer):
         """Battle method takes the given game state and
         runs the rules against the games state.
         Args:
@@ -111,7 +111,7 @@ class Monster():
         """
         self._logger.info("Player has  {} and has rolled {}".format(
                 game_state.get_items(), game_state.get_rolls()))
-        self._evaluator.run_rules(game_state)
+        self._evaluator.run_rules(game_state, input_gatherer)
         rule = self._rule
         for condition in self._conditions:
             self._logger.info("{} rule state is {}".format(

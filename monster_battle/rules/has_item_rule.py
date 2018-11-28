@@ -21,7 +21,7 @@ class HasItemRule(IRule):
         self._result = "not run"
         self._logger = logging.getLogger('root')
 
-    def execute(self, game_state):
+    def execute(self, game_state, input_gatherer):
         """Execute the rule.
         Args:
             game_state (GameState): The game state to assess

@@ -25,17 +25,23 @@ class ExactMatchRule(IRule):
         self._result = "not run"
         self._logger = logging.getLogger('root')
 
-    def execute(self, game_state):
+    def execute(self, game_state, input_gatherer):
         """Execute the rule.
         Args:
             game_state (GameState): The game state to assess
         """
         self._result = "False"
         if len(game_state.get_rolls()) >= self._number_of_chances:
-            self._logger.info("Exact rule requires %s", self._required_value)
+            if self._required_value == "user":
+                required_value = input_gatherer.get_input(
+                    "please enter required value for rule:")
+            else:
+                required_value = int(self._required_value)
+
+            self._logger.info("Exact rule requires %s", required_value)
             self._logger.info("Player has thrown %s",
                               game_state.get_rolls()[:self._number_of_chances])
-            if self._required_value in \
+            if required_value in \
                     game_state.get_rolls()[:self._number_of_chances]:
                 self._result = "True"
 

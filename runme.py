@@ -1,8 +1,10 @@
-from monster_battle.game_state import GameState
-from monster_battle.monster import Monster
-from monster_battle.configuration.file_configuration import FileConfiguration
 import logging
 import random
+import traceback
+from monster_battle.game_state import GameState
+from monster_battle.monster import Monster
+from monster_battle.console_input import ConsoleInput
+from monster_battle.configuration.file_configuration import FileConfiguration
 
 
 def get_configuration():
@@ -41,14 +43,16 @@ try:
 
     configuration = get_configuration()
     score = 0
+    console_input = ConsoleInput()
     for monster in configuration["monsters"]:
         game_monster = Monster(monster)
         game_state = generate_game_state(game_monster._required_rolls)
-        battle_state = game_monster.battle(game_state)
-        if(game_monster.battle(game_state)):
+        if(game_monster.battle(game_state, console_input)):
             score = score + 1
     logger.info("You defeated %s monsters", score)
 
 
 except Exception as exc:
     print("Should not fail " + str(exc))
+    tb = traceback.format_exc()
+    print(tb)

@@ -10,8 +10,8 @@ Todo:
 from abc import ABCMeta, abstractmethod
 
 
-class IRule:
-    """Rule interface.
+class IInput:
+    """Input interface.
 
     This interface must be used for all rules.
 
@@ -24,16 +24,6 @@ class IRule:
         return "1.0"
 
     @abstractmethod
-    def execute(self, game_state, input_gatherer):
-        """Execute rule on given game state """
-        raise NotImplementedError
-
-    @abstractmethod
-    def is_match(self, game_state):
-        """Can the rule be executed """
-        raise NotImplementedError
-
-    @abstractmethod
-    def rule_state(self):
-        """Get the last state of the rule """
+    def get_number_input(self, message):
+        """get a number from the input """
         raise NotImplementedError

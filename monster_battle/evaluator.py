@@ -33,14 +33,14 @@ class Evaluator():
 
         self._rules[rule_id] = rule
 
-    def run_rules(self, game_state):
+    def run_rules(self, game_state, input_gatherer):
         """Run rules on a given game state
         Args:
             game_state (game_state): game state to assess
         """
         for rule_id in self._rules:
             if self._rules[rule_id].is_match(game_state):
-                self._rules[rule_id].execute(game_state)
+                self._rules[rule_id].execute(game_state, input_gatherer)
 
     def rule_state(self, rule_id):
         """Get the state of a given rule based on the last time it ran
