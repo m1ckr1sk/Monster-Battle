@@ -1,91 +1,92 @@
 {
+    "version": "1",
     "monsters": [
         {
             "conditions": [
                 {
                     "type": "item",
-                    "name": "C1",
+                    "name": "has_sword",
                     "required_item": "sword"
                 },
                 {
                     "number_of_chances": 2,
                     "type": "total value",
-                    "name": "C2",
+                    "name": "rolls_10_in_2",
                     "required_value": 10
                 }
             ],
             "name": "cyclops",
-            "rule": "C1 and C2"
+            "rule": "has_sword and rolls_10_in_2"
         },
         {
             "conditions": [
                 {
                     "type": "item",
-                    "name": "C1",
+                    "name": "has_sword",
                     "required_item": "sword"
                 },
                 {
                     "type": "item",
-                    "name": "C2",
+                    "name": "has_axe",
                     "required_item": "axe"
                 },
                 {
-                    "number_of_chances": 1,
+                    "number_of_chances": 2,
                     "type": "total value",
-                    "name": "C3",
+                    "name": "rolls_5_total_in_2",
                     "required_value": 5
                 }
             ],
             "name": "demon knight",
-            "rule": "(C1 or C2) and C3"
+            "rule": "(has_sword or has_axe) and rolls_5_total_in_2"
         },
         {
             "conditions": [
                 {
                     "type": "item",
-                    "name": "C1",
+                    "name": "has_net",
                     "required_item": "net"
                 },
                 {
                     "number_of_chances": 2,
                     "type": "greater than",
-                    "name": "C2",
+                    "name": "rolls_more_than_5_in_2",
                     "required_value": 5
                 }
             ],
             "name": "battle vampire",
-            "rule": "C1 and C2"
+            "rule": "has_net and rolls_more_than_5_in_2"
         },
         {
             "conditions": [
                 {
                     "number_of_chances": 3,
                     "type": "exact match",
-                    "name": "C1",
+                    "name": "rolls_1_in_3",
                     "required_value": 1
                 },
                 {
                     "number_of_chances": 3,
                     "type": "exact match",
-                    "name": "C2",
+                    "name": "rolls_6_in_3",
                     "required_value": 6
                 }
             ],
             "name": "mad mike",
-            "rule": "C1 or C2"
+            "rule": "rolls_1_in_3 or rolls_6_in_3"
         },
         {
             "conditions": [
                 {
                     "number_of_chances": 3,
                     "type": "bounded match",
-                    "name": "C1",
+                    "name": "rolls_1_plus_or_minus_2_in_3",
                     "required_value": 1,
                     "boundary_offset": 2
                 }
             ],
-            "name": "mad mike",
-            "rule": "C1"
+            "name": "terrible titan",
+            "rule": "rolls_1_plus_or_minus_2_in_3"
         }
     ]
 }
