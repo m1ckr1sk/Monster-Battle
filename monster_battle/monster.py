@@ -9,11 +9,12 @@ Todo:
 
 """
 
-from monster_battle.rules.total_value_rule import TotalValueRule
-from monster_battle.rules.has_item_rule import HasItemRule
-from monster_battle.rules.greater_than_rule import GreaterThanRule
-from monster_battle.rules.exact_match_rule import ExactMatchRule
-from monster_battle.rules.bounded_match_rule import BoundedMatchRule
+from monster_battle.criteria.total_value_criterion import TotalValueCriterion
+from monster_battle.criteria.has_item_criterion import HasItemCriterion
+from monster_battle.criteria.greater_than_criterion import GreaterThanCriterion
+from monster_battle.criteria.exact_match_criterion import ExactMatchCriterion
+from monster_battle.criteria.bounded_match_criterion \
+    import BoundedMatchCriterion
 from monster_battle.evaluator import Evaluator
 import logging
 
@@ -30,96 +31,96 @@ class Monster():
 
     def __init__(self, config):
         """Constructor to load the rules into the engine.
-        Rules come from a config interface and identify the monster and
-        the conditions to beat the monster.
+        Criterias come from a config interface and identify the monster and
+        the criteria to beat the monster.
         """
         self._name = config["name"]
         self._evaluator = Evaluator()
         self._rule = config["rule"]
-        self._conditions = config["conditions"]
+        self._criteria = config["criteria"]
         self._logger = logging.getLogger('root')
         self._logger.info("creating monster {} with rule {}".format(
-            self._name, self._rule))
+            self._name, self._criteria))
         self._required_rolls = 0
-        self.load_config(config)
+        self.load_criteria(config)
 
-    def load_config(self, config):
-        """Load config
+    def load_criteria(self, config):
+        """Load the monster config
         Args:
             config (IConfiguration): The rule configuration to load
             against.
         """
-        for condition in config["conditions"]:
-            self._logger.info("condition {} is type {}".format(
-                condition["name"], condition["type"]))
+        for criterion in config["criteria"]:
+            self._logger.info("criterion {} is type {}".format(
+                criterion["name"], criterion["type"]))
 
-            if condition["type"] == "item":
-                self.add_has_item_rule(condition)
-            elif condition["type"] == "total value":
-                self.add_total_value_rule(condition)
-            elif condition["type"] == "greater than":
-                self.add_greater_than_value_rule(condition)
-            elif condition["type"] == "exact match":
-                self.add_exact_match_rule(condition)
-            elif condition["type"] == "bounded match":
-                self.add_bounded_match_rule(condition)
+            if criterion["type"] == "item":
+                self.add_has_item_criteria(criterion)
+            elif criterion["type"] == "total value":
+                self.add_total_value_criteria(criterion)
+            elif criterion["type"] == "greater than":
+                self.add_greater_than_value_criteria(criterion)
+            elif criterion["type"] == "exact match":
+                self.add_exact_match_criteria(criterion)
+            elif criterion["type"] == "bounded match":
+                self.add_bounded_match_criteria(criterion)
 
-    def add_bounded_match_rule(self, condition):
-        self._evaluator.add_rule(
-            condition["name"],
-            BoundedMatchRule(condition["number_of_chances"],
-                             condition["required_value"],
-                             condition["boundary_offset"]))
-        if self._required_rolls < int(condition["number_of_chances"]):
-            self._required_rolls = condition["number_of_chances"]
+    def add_bounded_match_criteria(self, criterion):
+        self._evaluator.add_criteria(
+            criterion["name"],
+            BoundedMatchCriterion(criterion["number_of_chances"],
+                                  criterion["required_value"],
+                                  criterion["boundary_offset"]))
+        if self._required_rolls < int(criterion["number_of_chances"]):
+            self._required_rolls = criterion["number_of_chances"]
 
-    def add_exact_match_rule(self, condition):
-        self._evaluator.add_rule(
-            condition["name"],
-            ExactMatchRule(condition["number_of_chances"],
-                           condition["required_value"]))
-        if self._required_rolls < int(condition["number_of_chances"]):
-            self._required_rolls = condition["number_of_chances"]
+    def add_exact_match_criteria(self, criterion):
+        self._evaluator.add_criteria(
+            criterion["name"],
+            ExactMatchCriterion(criterion["number_of_chances"],
+                                criterion["required_value"]))
+        if self._required_rolls < int(criterion["number_of_chances"]):
+            self._required_rolls = criterion["number_of_chances"]
 
-    def add_greater_than_value_rule(self, condition):
-        self._evaluator.add_rule(
-            condition["name"],
-            GreaterThanRule(condition["number_of_chances"],
-                            condition["required_value"]))
-        if self._required_rolls < int(condition["number_of_chances"]):
-            self._required_rolls = condition["number_of_chances"]
+    def add_greater_than_value_criteria(self, criterion):
+        self._evaluator.add_criteria(
+            criterion["name"],
+            GreaterThanCriterion(criterion["number_of_chances"],
+                                 criterion["required_value"]))
+        if self._required_rolls < int(criterion["number_of_chances"]):
+            self._required_rolls = criterion["number_of_chances"]
 
-    def add_total_value_rule(self, condition):
-        self._evaluator.add_rule(
-            condition["name"],
-            TotalValueRule(condition["number_of_chances"],
-                           condition["required_value"]))
-        if self._required_rolls < int(condition["number_of_chances"]):
-            self._required_rolls = condition["number_of_chances"]
+    def add_total_value_criteria(self, criterion):
+        self._evaluator.add_criteria(
+            criterion["name"],
+            TotalValueCriterion(criterion["number_of_chances"],
+                                criterion["required_value"]))
+        if self._required_rolls < int(criterion["number_of_chances"]):
+            self._required_rolls = criterion["number_of_chances"]
 
-    def add_has_item_rule(self, condition):
-        self._evaluator.add_rule(
-            condition["name"],
-            HasItemRule(condition["required_item"]))
+    def add_has_item_criteria(self, criterion):
+        self._evaluator.add_criteria(
+            criterion["name"],
+            HasItemCriterion(criterion["required_item"]))
 
     def battle(self, game_state, input_gatherer):
         """Battle method takes the given game state and
-        runs the rules against the games state.
+        runs the monster rules against the games state.
         Args:
             game_state (GameState): The state the rules should run
             against.
         """
         self._logger.info("Player has  {} and has rolled {}".format(
-                game_state.get_items(), game_state.get_rolls()))
-        self._evaluator.run_rules(game_state, input_gatherer)
+            game_state.get_items(), game_state.get_rolls()))
+        self._evaluator.run_criterias(game_state, input_gatherer)
         rule = self._rule
-        for condition in self._conditions:
+        for criterion in self._criteria:
             self._logger.info("{} rule state is {}".format(
-                condition["name"],
-                self._evaluator.rule_state(condition["name"])))
-            rule_state = self._evaluator.rule_state(condition["name"])
-            rule = rule.replace(condition["name"], rule_state)
-        self._logger.info("Rule for evaulation is {}".format(rule))
+                criterion["name"],
+                self._evaluator.criteria_state(criterion["name"])))
+            criteria_state = self._evaluator.criteria_state(criterion["name"])
+            rule = rule.replace(criterion["name"], criteria_state)
+        self._logger.info("Criteria for evaulation is {}".format(rule))
         battle_result = eval(rule)
         self._logger.info("battle result with {} is {}".format(
             self._name,

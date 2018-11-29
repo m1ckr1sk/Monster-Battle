@@ -1,5 +1,5 @@
 [
-  "test_has_item_rule.py::test_rule_not_run_returns_not_run", 
-  "test_has_item_rule.py::test_player_not_has_item_is_fail", 
-  "test_has_item_rule.py::test_player_has_item_is_pass"
+  "test_has_item_criteria.py::test_criteria_not_run_returns_not_run", 
+  "test_has_item_criteria.py::test_player_not_has_item_is_fail", 
+  "test_has_item_criteria.py::test_player_has_item_is_pass"
 ]

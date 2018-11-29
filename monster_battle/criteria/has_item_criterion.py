@@ -8,10 +8,10 @@ Todo:
 
 """
 import logging
-from monster_battle.rules.irule import IRule
+from monster_battle.criteria.icriterion import ICriterion
 
 
-class HasItemRule(IRule):
+class HasItemCriterion(ICriterion):
     """Has item rule.
     This rule allows a config to test if the player has s specified
     item.
@@ -42,6 +42,6 @@ class HasItemRule(IRule):
         self._logger.info("checking if has item rule can run...")
         return True
 
-    def rule_state(self):
-        """Get the last state of the rule"""
+    def criteria_state(self):
+        """Get the last state of the criterion"""
         return self._result

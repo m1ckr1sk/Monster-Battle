@@ -4,7 +4,7 @@ This module is the main monster creation module and handles the rule
 logic.
 
 Todo:
-    * Think of better way to load rules
+    * Think of better way to load criterions
 
 """
 from monster_battle.iinput import IInput

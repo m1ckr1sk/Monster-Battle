@@ -10,10 +10,10 @@ Todo:
 from abc import ABCMeta, abstractmethod
 
 
-class IRule:
-    """Rule interface.
+class ICriterion:
+    """Criterion interface.
 
-    This interface must be used for all rules.
+    This interface must be used for all criterion.
 
     """
     __metaclass__ = ABCMeta
@@ -25,15 +25,15 @@ class IRule:
 
     @abstractmethod
     def execute(self, game_state, input_gatherer):
-        """Execute rule on given game state """
+        """Execute criterion on given game state """
         raise NotImplementedError
 
     @abstractmethod
     def is_match(self, game_state):
-        """Can the rule be executed """
+        """Can the criterion be executed """
         raise NotImplementedError
 
     @abstractmethod
-    def rule_state(self):
-        """Get the last state of the rule """
+    def criteria_state(self):
+        """Get the last state of the criterion """
         raise NotImplementedError

@@ -8,16 +8,16 @@ Todo:
 
 """
 import logging
-from monster_battle.rules.irule import IRule
+from monster_battle.criteria.icriterion import ICriterion
 
 
-class GreaterThanRule(IRule):
-    """Exact Match Rule
-
-    This class implements a rule which will pass if any roll in the
-    number of chances is greater the required value.
-
+class TotalValueCriterion(ICriterion):
+    """Total value rule.
+    This rule passes if the sum value of all rolls is greater than
+    the required value. The number of chances is the rolls that contribute
+    to the total.
     """
+
     def __init__(self, number_of_chances, required_value):
         self._number_of_chances = number_of_chances
         self._required_value = required_value
@@ -37,13 +37,13 @@ class GreaterThanRule(IRule):
             else:
                 required_value = int(self._required_value)
 
-            self._logger.info("Max rule requires %s",
+            self._logger.info("running total value rule requires %s",
                               required_value)
-            self._logger.info("Player highest throw %s",
-                              max(game_state.get_rolls()
+            self._logger.info("running total value rule. Value is %s..",
+                              sum(game_state.get_rolls()
                                   [:self._number_of_chances]))
-
-            if max(game_state.get_rolls()[:self._number_of_chances]) >= \
+            if sum(
+                    game_state.get_rolls()[:self._number_of_chances]) >= \
                     required_value:
                 self._result = "True"
 
@@ -54,6 +54,6 @@ class GreaterThanRule(IRule):
         """
         return len(game_state.get_rolls()) >= self._number_of_chances
 
-    def rule_state(self):
-        """Get the last state of the rule"""
+    def criteria_state(self):
+        """Get the last state of the criterion"""
         return self._result

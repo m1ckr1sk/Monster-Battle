@@ -14,3 +14,4 @@ python runme.py
 
 to load the configuration found in configuration_files\basic_config.json.  The example pits the used against a number of monsters
 who can be defeated by meeting the criteria set out in the rules.
+

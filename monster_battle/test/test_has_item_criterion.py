@@ -1,23 +1,24 @@
 import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from monster_battle.rules.has_item_rule import HasItemRule  # noqa: E402
+from monster_battle.criteria.has_item_criterion \
+    import HasItemCriterion  # noqa: E402
 from monster_battle.game_state import GameState  # noqa: E402
 from monster_battle.console_input import ConsoleInput  # noqa: E402
 
 
-def test_rule_not_run_returns_not_run():
+def test_criteria_not_run_returns_not_run():
     test_item = "test_item"
 
-    test_rule = HasItemRule(test_item)
+    test_criteria = HasItemCriterion(test_item)
 
-    assert(test_rule.rule_state() == "not run")
+    assert(test_criteria.criteria_state() == "not run")
 
 
 def test_player_not_has_item_is_fail():
     test_item = "test_item"
 
-    test_rule = HasItemRule(test_item)
+    test_criteria = HasItemCriterion(test_item)
 
     test_items = []
 
@@ -25,14 +26,14 @@ def test_player_not_has_item_is_fail():
     test_game_state.set_items(test_items)
     console_input = ConsoleInput()
 
-    test_rule.execute(test_game_state, console_input)
-    assert(test_rule.rule_state() == "False")
+    test_criteria.execute(test_game_state, console_input)
+    assert(test_criteria.criteria_state() == "False")
 
 
 def test_player_has_item_is_pass():
     test_item = "test_item"
 
-    test_rule = HasItemRule(test_item)
+    test_criteria = HasItemCriterion(test_item)
 
     test_items = []
     test_items.append(test_item)
@@ -41,5 +42,5 @@ def test_player_has_item_is_pass():
     test_game_state.set_items(test_items)
     console_input = ConsoleInput()
 
-    test_rule.execute(test_game_state, console_input)
-    assert(test_rule.rule_state() == "True")
+    test_criteria.execute(test_game_state, console_input)
+    assert(test_criteria.criteria_state() == "True")
