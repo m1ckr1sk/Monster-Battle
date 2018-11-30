@@ -100,6 +100,19 @@
             ],
             "name": "terrible titan",
             "rule": "rolls_ud_plus_or_minus_2_in_3"
+        },
+        {
+            "criteria": [
+                {
+                    "number_of_chances": 3,
+                    "type": "odd even match",
+                    "name": "rolls_odd_1_in_3",
+                    "required_value": "1",
+                    "is_odd": true
+                }
+            ],
+            "name": "apathetic alien",
+            "rule": "rolls_odd_1_in_3"
         }
     ]
 }

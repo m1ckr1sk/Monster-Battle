@@ -5,13 +5,15 @@ This module is the main monster creation module and handles the rule
 logic.
 
 Todo:
-    * Think of better way to load rules
+    * Think of better way to load criteria
 
 """
 
 from monster_battle.criteria.total_value_criterion import TotalValueCriterion
 from monster_battle.criteria.has_item_criterion import HasItemCriterion
 from monster_battle.criteria.greater_than_criterion import GreaterThanCriterion
+from monster_battle.criteria.odd_even_value_criterion \
+    import OddEvenValueCriterion
 from monster_battle.criteria.exact_match_criterion import ExactMatchCriterion
 from monster_battle.criteria.bounded_match_criterion \
     import BoundedMatchCriterion
@@ -64,6 +66,17 @@ class Monster():
                 self.add_exact_match_criteria(criterion)
             elif criterion["type"] == "bounded match":
                 self.add_bounded_match_criteria(criterion)
+            elif criterion["type"] == "odd even match":
+                self.add_odd_even_criteria(criterion)
+
+    def add_odd_even_criteria(self, criterion):
+        self._evaluator.add_criteria(
+            criterion["name"],
+            OddEvenValueCriterion(criterion["number_of_chances"],
+                                  criterion["required_value"],
+                                  criterion["is_odd"]))
+        if self._required_rolls < int(criterion["number_of_chances"]):
+            self._required_rolls = criterion["number_of_chances"]
 
     def add_bounded_match_criteria(self, criterion):
         self._evaluator.add_criteria(
