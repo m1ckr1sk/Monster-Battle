@@ -17,14 +17,18 @@ class ConsoleInput(IInput):
     def get_number_input(self, message):
         """get a number from the input """
         number = None
-        while(not number):
+        while not number:
             text = input(message)
             number = self.represents_int(text)
 
         return number
 
-    def represents_int(self, s):
+    def represents_int(self, int_string):
+        """safely convert int string to int.
+        Args:
+            int_string (string): integer value as string
+        """
         try:
-            return int(s)
+            return int(int_string)
         except ValueError:
             return None

@@ -33,7 +33,7 @@ class Evaluator():
 
         self._criterias[rule_id] = rule
 
-    def run_criterias(self, game_state, input_gatherer):
+    def run_criteria(self, game_state, input_gatherer):
         """Run rules on a given game state
         Args:
             game_state (game_state): game state to assess

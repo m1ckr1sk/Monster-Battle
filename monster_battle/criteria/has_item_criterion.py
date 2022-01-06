@@ -21,12 +21,12 @@ class HasItemCriterion(ICriterion):
         self._result = "not run"
         self._logger = logging.getLogger('root')
 
-    def execute(self, game_state, input_gatherer):
+    def execute(self, game_state, input_gatherer):  # pylint: disable=unused-argument # noqa E501
         """Execute the rule.
         Args:
             game_state (GameState): The game state to assess
         """
-        self._logger.info("executing rule...")
+        self._logger.info("executing has item rule...")
         if self._item in game_state.get_items():
             self._logger.info("has item rule has found required item...")
             self._result = "True"
@@ -34,7 +34,7 @@ class HasItemCriterion(ICriterion):
             self._logger.info("has item rule cannot find required item...")
             self._result = "False"
 
-    def is_match(self, game_state):
+    def is_match(self, game_state):  # pylint: disable=unused-argument
         """Can the rule run?.
         Args:
             game_state (GameState): The game state to assess

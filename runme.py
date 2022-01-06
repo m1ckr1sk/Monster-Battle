@@ -39,6 +39,7 @@ def generate_game_state(number_of_rolls):
 
 
 logger = logging.getLogger('root')
+logger.setLevel(level="INFO")
 try:
 
     configuration = get_configuration()

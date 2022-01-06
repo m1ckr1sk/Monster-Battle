@@ -32,6 +32,7 @@ class OddEvenValueCriterion(ICriterion):
             game_state (GameState): The game state to assess
         """
         self._result = "False"
+        self._logger.info("executing odd or even rule...")
         if len(game_state.get_rolls()) >= self._number_of_chances:
             if self._required_value == "user":
                 required_value = input_gatherer.get_input(
@@ -47,7 +48,7 @@ class OddEvenValueCriterion(ICriterion):
                                   [:self._number_of_chances]))
             number_of_odd_numbers = self.count_odd_numbers_in_rolls(
                 game_state.get_rolls()[:self._number_of_chances])
-            if(self._isodd):
+            if self._isodd:
                 self._result = str(required_value <= number_of_odd_numbers)
             else:
                 self._result = str(required_value <=
@@ -55,6 +56,10 @@ class OddEvenValueCriterion(ICriterion):
                                     number_of_odd_numbers))
 
     def count_odd_numbers_in_rolls(self, rolls):
+        """Counts the the odd numbers in a roll?.
+        Args:
+            rolls (array): The dice rolls
+        """
         if not rolls:
             return 0
         return rolls[0] % 2 + self.count_odd_numbers_in_rolls(rolls[1:])

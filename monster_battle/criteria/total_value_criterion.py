@@ -30,6 +30,7 @@ class TotalValueCriterion(ICriterion):
             game_state (GameState): The game state to assess
         """
         self._result = "False"
+        self._logger.info("executing total value rule...")
         if len(game_state.get_rolls()) >= self._number_of_chances:
             if self._required_value == "user":
                 required_value = input_gatherer.get_input(
