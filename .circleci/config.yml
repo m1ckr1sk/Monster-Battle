@@ -49,7 +49,7 @@ jobs:
           name: run tests
           command: |
             . monster/bin/activate
-            pytest monster_battle/test
+            pytest --junitxml=monster_battle/test-reports monster_battle/test 
       
       - store_test_results:
           path: monster_battle/test-reports
