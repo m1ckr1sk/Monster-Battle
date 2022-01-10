@@ -50,6 +50,9 @@ jobs:
           command: |
             . monster/bin/activate
             pytest monster_battle/test
+      
+      - store_test_results:
+          path: monster_battle/test-reports
 
       - store_artifacts:
           path: monster_battle/test-reports
