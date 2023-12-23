@@ -41,4 +41,4 @@ jobs:
     - name: Coverage
       run: |
         python -m coverage run --source=monster_battle -m pytest -v ./monster_battle/test
-        python -m coverate report -m
+        python -m coverage report -m
