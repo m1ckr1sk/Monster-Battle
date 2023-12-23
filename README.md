@@ -1,6 +1,6 @@
 # Monster-Battle
 
-[![CircleCI](https://circleci.com/gh/m1ckr1sk/Monster-Battle.svg?style=svg)](https://circleci.com/gh/m1ckr1sk/Monster-Battle)
+[![Python package](https://github.com/m1ckr1sk/Monster-Battle/actions/workflows/python-package.yml/badge.svg)](https://github.com/m1ckr1sk/Monster-Battle/actions/workflows/python-package.yml)
 
 This repo is test project for gathering some thoughts on a configurable set of rules for a rules engine.  
 
