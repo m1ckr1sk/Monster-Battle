@@ -38,3 +38,7 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+    - name: Coverage
+      run: |
+        python -m coverage run --source=monster_battle -m pytest -v ./monster_battle/test
+        python -m coverage report -m
